@@ -5,7 +5,15 @@ module.exports = (sequelize, DataTypes) => {
     phone: DataTypes.STRING
   }, {});
   Contact.associate = function(models) {
-    // associations can be defined here
+    Contact.hasMany(models.SMS, {
+      foreignKey:'receiver_id',
+      as:'received_messages'
+    });
+
+    Contact.hasMany(models.SMS, {
+          foreignKey:'sender_id',
+          as:'sent_messages'
+    })
   };
   return Contact;
 };

@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey:'sender_id',
         as:'sender'
     });
+
     SMS.belongsTo(models.Contact,{
           foreignKey:'receiver_id',
           as:'receiver'
