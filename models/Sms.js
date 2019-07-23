@@ -1,21 +1,20 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const SMS = sequelize.define('SMS', {
-    sender_id: DataTypes.INTEGER,
-    receiver_id: DataTypes.INTEGER,
+  const Sms = sequelize.define('Sms', {
     message: DataTypes.STRING,
     sms_status: DataTypes.STRING
   }, {});
-  SMS.associate = function(models) {
-    SMS.belongsTo(models.Contact,{
+
+  Sms.associate = function(models) {
+    Sms.belongsTo(models.Contact,{
       foreignKey:'sender_id',
         as:'sender'
     });
 
-    SMS.belongsTo(models.Contact,{
+    Sms.belongsTo(models.Contact,{
           foreignKey:'receiver_id',
           as:'receiver'
     });
   };
-  return SMS;
+  return Sms;
 };

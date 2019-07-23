@@ -4,13 +4,14 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     phone: DataTypes.STRING
   }, {});
+
   Contact.associate = function(models) {
-    Contact.hasMany(models.SMS, {
+    Contact.hasMany(models.Sms, {
       foreignKey:'receiver_id',
       as:'received_messages'
     });
 
-    Contact.hasMany(models.SMS, {
+    Contact.hasMany(models.Sms, {
           foreignKey:'sender_id',
           as:'sent_messages'
     })
