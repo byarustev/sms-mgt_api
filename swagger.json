@@ -1,0 +1,105 @@
+{
+ "swagger":"2.0",
+
+  "info":{
+    "version":"1.0.0",
+    "title": "sms api documentation",
+    "description":"A simple node api for sms application",
+    "license":{
+      "name":"MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+
+  "host":"localhost:4000/api/v1",
+  "basePath":"",
+
+  "tags":[
+    {
+      "name":"contacts",
+      "description":"endpoints for contacts in the system"
+   }
+  ],
+
+  "schemes":["http", "https"],
+  "consumes":["application/json"],
+  "produces":["application/json"],
+
+  "paths":{
+    "/contacts":{
+      "get":{
+        "tags":["contacts"],
+        "summary":"get all the contacts in the system",
+        "responses": {
+          "200": {
+            "description":"ok",
+            "schema":{
+              "$ref":"#/definitions/Contacts"
+            }
+          }
+        }
+
+      }
+    }
+  },
+
+  "definitions":{
+
+    "Contact":{
+      "type":"object",
+      "properties":{
+        "id":{
+          "type":"integer"
+        },
+        "name":{
+          "type":"string"
+        },
+        "phone":{
+          "type":"string"
+        },
+        "createdAt":{
+          "type":"date-time"
+        },
+        "updatedAt":{
+          "type":"date-time"
+        }
+      }
+    },
+
+    "Contacts":{
+      "type":"object",
+      "properties":{
+        "contacts":{
+          "type":"object",
+          "additionalProperties":{
+            "$ref":"#/definitions/Contact"
+          }
+        }
+      }
+    },
+
+    "Sms":{
+      "type":"object",
+      "properties":{
+        "message":{
+          "type":"string"
+        },
+        "sms_status":{
+          "type":"string"
+        },
+        "receiver_id":{
+          "type":"integer"
+        },
+        "sender_id":{
+          "type":"integer"
+        },
+        "createdAt":{
+          "type":"date-time"
+        },
+        "updatedAt":{
+          "type":"date-time"
+        }
+      }
+    }
+  }
+}
