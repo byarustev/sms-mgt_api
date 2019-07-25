@@ -2,14 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const contactRouter = require('./routes/contacts');
 const smsRouter = require ('./routes/sms');
-
+require('dotenv').config();
 //swagger
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+let swaggerDocument = require('./swagger.json');
+swaggerDocument.host=process.env.HOST+'/api/v1';
 
-require('dotenv').config();
 const app= express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 const v1="/api/v1";
 
 // parse application/x-www-form-urlencoded
