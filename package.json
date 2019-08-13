@@ -18,7 +18,8 @@
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.10.1",
-    "sequelize-cli": "^5.5.0"
+    "sequelize-cli": "^5.5.0",
+    "swagger-ui-express": "^4.0.7"
   },
   "repository": {
     "type": "git",

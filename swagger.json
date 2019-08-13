@@ -1,0 +1,183 @@
+{
+ "swagger":"2.0",
+
+  "info":{
+    "version":"1.0.0",
+    "title": "sms api documentation",
+    "description":"A simple node api for sms application",
+    "license":{
+      "name":"MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+
+  "host":"localhost:4000/api/v1",
+  "basePath":"",
+
+  "tags":[
+    {
+      "name":"contacts",
+      "description":"endpoints for contacts in the system"
+   }
+  ],
+
+  "schemes":["http", "https"],
+  "consumes":["application/json"],
+  "produces":["application/json"],
+
+  "paths":{
+    "/contacts":{
+      "get":{
+        "tags":["contacts"],
+        "summary":"get all the contacts in the system",
+        "responses": {
+          "200": {
+            "description":"ok",
+            "schema":{
+              "$ref":"#/definitions/Contacts"
+            }
+          }
+        }
+
+      }
+    },
+    "/contact":{
+      "post":{
+        "tags":["contacts"],
+        "summary":"add a contact to the system",
+        "parameters":[
+          {
+            "in":"body",
+            "name":"body",
+            "phone":"body",
+            "schema":{
+              "$ref":"#/definitions/ContactToEdit"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description":"created"
+          },
+          "400": {
+            "description":"not created"
+          }
+        }
+
+      }
+    },
+    "/contact/{id}":{
+      "parameters":[{
+        "name":"id",
+        "in":"path",
+        "required":true,
+        "description":"target contact",
+        "type":"string"
+      }],
+      "get":{
+        "tags":["contacts"],
+        "summary":"get single contacts details",
+        "responses": {
+          "200": {
+            "description":"ok",
+            "schema":{
+              "$ref":"#/definitions/Contacts"
+            }
+          }
+        }
+      },
+      "put":{
+        "tags":["contacts"],
+        "summary":"update single contact",
+        "parameters":[
+          {
+            "in":"body",
+            "name":"name here",
+            "phone":"phone here",
+            "schema":{
+              "$ref":"#/definitions/ContactToEdit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description":"updated"
+          },
+          "400": {
+            "description":"failed"
+          }
+        }
+      }
+    }
+  },
+
+  "definitions":{
+    "ContactToEdit":{
+      "type":"object",
+      "properties":{
+        "name":{
+          "type":"string"
+        },
+        "phone":{
+          "type":"string"
+        }
+      }
+    },
+    "Contact":{
+      "type":"object",
+      "properties":{
+        "id":{
+          "type":"integer"
+        },
+        "name":{
+          "type":"string"
+        },
+        "phone":{
+          "type":"string"
+        },
+        "createdAt":{
+          "type":"date-time"
+        },
+        "updatedAt":{
+          "type":"date-time"
+        }
+      }
+    },
+
+    "Contacts":{
+      "type":"object",
+      "properties":{
+        "contacts":{
+          "type":"object",
+          "additionalProperties":{
+            "$ref":"#/definitions/Contact"
+          }
+        }
+      }
+    },
+
+    "Sms":{
+      "type":"object",
+      "properties":{
+        "message":{
+          "type":"string"
+        },
+        "sms_status":{
+          "type":"string"
+        },
+        "receiver_id":{
+          "type":"integer"
+        },
+        "sender_id":{
+          "type":"integer"
+        },
+        "createdAt":{
+          "type":"date-time"
+        },
+        "updatedAt":{
+          "type":"date-time"
+        }
+      }
+    }
+  }
+}
